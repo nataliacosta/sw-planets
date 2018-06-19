@@ -1,18 +1,54 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Box from './Box';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      id: 0,
+      max: 0,
+      planet: {},
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMax();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.id !== this.state.id) {
+      this.fetchPlanet();
+    }
+  }
+
+  fetchMax() {
+    fetch('https://swapi.co/api/planets/')
+    .then(response => response.json())
+    .then(data => {
+      this.setState({max: data.count});
+      this.setRandomPlanet();
+    })
+  }
+
+  fetchPlanet() {
+    fetch('https://swapi.co/api/planets/' + this.state.id)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({planet: data});
+    })
+  }
+
+  setRandomPlanet() {
+    let rand = Math.floor((Math.random() * this.state.max) + 1);
+    this.setState({id: rand});
+  }
+
   render() {
+    console.log(this.state)
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Box planet={this.state.planet}/>
       </div>
     );
   }

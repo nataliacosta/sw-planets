@@ -1,0 +1,29 @@
+.Box {
+    margin: auto;
+    width: 500px;
+    background-color: black;
+    border: solid 1px yellow;
+    color: white;
+}
+
+.PlanetName {
+    font-size: 25pt;
+    border-bottom: solid 1px yellow;
+}
+
+.Others {
+    font-size: 15pt;
+    text-align: left;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 30px;
+}
+
+.Others div {
+    margin-top: 30px;
+}
+
+.Featured {
+    margin-top: 50px !important;
+    text-align: center !important;
+}
