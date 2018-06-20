@@ -41,14 +41,16 @@ class App extends Component {
 
   setRandomPlanet() {
     let rand = Math.floor((Math.random() * this.state.max) + 1);
-    this.setState({id: rand});
+    this.setState({id: rand, planet: {}});
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="App">
         <Box planet={this.state.planet}/>
+        <div className="NextButton" onClick={() => this.setRandomPlanet()}>
+          NEXT
+        </div>
       </div>
     );
   }

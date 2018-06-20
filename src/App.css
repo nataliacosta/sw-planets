@@ -2,3 +2,15 @@
   text-align: center;
   padding: 80px;
 }
+
+.NextButton {
+  margin: auto;
+  margin-top: 50px;
+  font-size: 20pt;
+  padding:10px;
+  width: 100px;
+  background-color: black;
+  border: solid 1px yellow;
+  color: white;
+  cursor: pointer;
+}
