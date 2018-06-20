@@ -9,6 +9,7 @@ class App extends Component {
       id: 0,
       max: 0,
       planet: {},
+      fetching: true,
     };
   }
 
@@ -16,10 +17,11 @@ class App extends Component {
     this.fetchMax();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.id !== this.state.id) {
-      this.fetchPlanet();
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.fetching !== this.state.fetching) {
+      return true;
     }
+    return false;
   }
 
   fetchMax() {
@@ -31,23 +33,28 @@ class App extends Component {
     })
   }
 
-  fetchPlanet() {
-    fetch('https://swapi.co/api/planets/' + this.state.id)
+  fetchPlanet(id) {
+    fetch('https://swapi.co/api/planets/' + id)
     .then(response => response.json())
     .then(data => {
-      this.setState({planet: data});
+      this.setState({id: id, planet: data, fetching: false});
     })
   }
 
   setRandomPlanet() {
+    this.setState({fetching: true});
     let rand = Math.floor((Math.random() * this.state.max) + 1);
-    this.setState({id: rand, planet: {}});
+    while (rand === this.state.id) {
+      rand = Math.floor((Math.random() * this.state.max) + 1);
+    }
+    this.fetchPlanet(rand);
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="App">
-        <Box planet={this.state.planet}/>
+        <Box planet={this.state.planet} fetching={this.state.fetching}/>
         <div className="NextButton" onClick={() => this.setRandomPlanet()}>
           NEXT
         </div>

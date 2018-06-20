@@ -5,7 +5,7 @@ import loading2 from './loading-image-2.gif';
 import loading3 from './loading-image-3.gif';
 
 const Box = (props) => {
-    if (props.planet.name !== undefined) {
+    if (props.fetching === false) {
         return (
         <div className="Box">
             <div className="PlanetName">
@@ -57,6 +57,6 @@ const Box = (props) => {
             )
         }
     }
-  }
+}
 
 export default Box;
