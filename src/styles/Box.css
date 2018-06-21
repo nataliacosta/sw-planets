@@ -1,0 +1,8 @@
+.Box {
+    margin: auto;
+    width: 500px;
+    min-height: 453px;
+    background-color: black;
+    border: solid 1px yellow;
+    color: white;
+}
