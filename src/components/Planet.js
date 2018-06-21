@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './../styles/Planet.css';
 
 const Planet = (props) => {
@@ -23,6 +24,10 @@ const Planet = (props) => {
         </div>
     </div>
     )
+}
+
+Planet.PropTypes = {
+    planet: PropTypes.object,
 }
 
 export default Planet;
