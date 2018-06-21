@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './../styles/Box.css';
 import Planet from './Planet'
 import Loading from './Loading';
@@ -10,6 +11,12 @@ const Box = (props) => {
             {props.error ? <Error /> : (props.fetching ? <Loading /> : <Planet planet={props.planet}/>)}
         </div>
     )
+}
+
+Box.PropTypes = {
+    error: PropTypes.bool,
+    fetching: PropTypes.bool,
+    planet: PropTypes.object,
 }
 
 export default Box;
