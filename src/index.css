@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Expanded');
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Encode Sans Semi Expanded', sans-serif;
+  background: #000000 url("./background.jpg") top left repeat;
+  text-transform: uppercase;
 }
