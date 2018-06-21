@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
-import Box from './Box';
+import title from './assets/title.png';
+import './styles/App.css';
+import Box from './components/Box';
 
 class App extends Component {
   constructor() {
@@ -10,6 +11,7 @@ class App extends Component {
       max: 0,
       planet: {},
       fetching: true,
+      error: false,
     };
   }
 
@@ -21,27 +23,36 @@ class App extends Component {
     if (nextState.fetching !== this.state.fetching) {
       return true;
     }
+    if (nextState.error !== this.state.error) {
+      return true;
+    }
     return false;
   }
 
-  fetchMax() {
+  fetchMax = () => {
     fetch('https://swapi.co/api/planets/')
     .then(response => response.json())
     .then(data => {
       this.setState({max: data.count});
       this.setRandomPlanet();
     })
-  }
-
-  fetchPlanet(id) {
-    fetch('https://swapi.co/api/planets/' + id)
-    .then(response => response.json())
-    .then(data => {
-      this.setState({id: id, planet: data, fetching: false});
+    .catch(() => {
+      this.setState({error: true});
     })
   }
 
-  setRandomPlanet() {
+  fetchPlanet = (id) => {
+    fetch('https://swapi.co/api/planets/' + id)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({id: id, planet: data, fetching: false, error: false});
+    })
+    .catch(() => {
+      this.setState({error: true});
+    })
+  }
+
+  setRandomPlanet = () => {
     this.setState({fetching: true});
     let rand = Math.floor((Math.random() * this.state.max) + 1);
     while (rand === this.state.id) {
@@ -51,11 +62,13 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="App">
-        <Box planet={this.state.planet} fetching={this.state.fetching}/>
-        <div className="NextButton" onClick={() => this.setRandomPlanet()}>
+        <div className="AppTitle">
+          <img src={title} alt="Star Wars Random Planets Edition"/>
+        </div>
+        <Box planet={this.state.planet} fetching={this.state.fetching} error={this.state.error}/>
+        <div className="NextButton" onClick={this.setRandomPlanet}>
           NEXT
         </div>
       </div>

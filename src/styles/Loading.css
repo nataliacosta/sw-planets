@@ -1,0 +1,28 @@
+.Loading1 {
+    height: 451px;
+    background-color: #5A6262;
+}
+
+.Loading1 img {
+    width: 50%;
+    margin-top:100px;
+}
+
+.Loading2 {
+    height: 451px;
+    background-color: #C1C1C1;
+}
+
+.Loading2 img {
+    max-width: 450px;
+    margin-top:100px;
+}
+
+.Loading3 {
+    height: 451px;
+    background-color: #444445;
+}
+
+.Loading3 img {
+    margin-top:100px;
+}

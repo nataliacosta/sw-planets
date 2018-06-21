@@ -1,6 +1,10 @@
 .App {
   text-align: center;
-  padding: 80px;
+  padding: 20px;
+}
+
+.AppTitle {
+  margin: 50px;
 }
 
 .NextButton {
